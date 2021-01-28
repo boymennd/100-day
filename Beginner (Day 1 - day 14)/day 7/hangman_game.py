@@ -9,6 +9,7 @@ mang = len(stages) - 1
 key_pass = []
 for _ in range(a):
     key_pass += "_"
+print(" ".join(key_pass))
 ket_thuc = False
 while not ket_thuc:
     c = input("Mời bạn nhập 1 chữ cái:")
@@ -19,7 +20,7 @@ while not ket_thuc:
     print(" ".join(key_pass))
     if "_" not in key_pass:
         game_finish = True
-        print("Bạn thắng rồi@@@")
+        print("Bạn thắng rồi!!!!")
     if c not in key_pass:
         print(f"Bạn chọn:{c} .Từ đó ko có trong từ khóa")
         mang -= 1
