@@ -10,6 +10,7 @@ key_pass = []
 for _ in range(a):
     key_pass += "_"
 print(" ".join(key_pass))
+print(f"Từ này có {len(key_pass)} chữ cái!!")
 ket_thuc = False
 while not ket_thuc:
     c = input("Mời bạn nhập 1 chữ cái:")
@@ -24,6 +25,7 @@ while not ket_thuc:
     if c not in key_pass:
         print(f"Bạn chọn:{c} .Từ đó ko có trong từ khóa")
         mang -= 1
+        print(f"Bạn còn {mang} mạng")
     if mang == 0:
         ket_thuc = True
         print("Bạn thua rồi!!!")
