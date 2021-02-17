@@ -30,7 +30,7 @@ class BackGround(Turtle):
         self.goto(40, 240)
         self.write(self.score_p2, True, "center", font=("Arial", 40, "normal"))
 
-    def udate_p1(self):
+    def update_p1(self):
         self.score_p1 += 1
         self.clear()
         self.middle_line()
@@ -39,7 +39,7 @@ class BackGround(Turtle):
         self.goto(40, 240)
         self.write(self.score_p2, True, "center", font=("Arial", 40, "normal"))
 
-    def udate_p2(self):
+    def update_p2(self):
         self.score_p2 += 1
         self.clear()
         self.middle_line()
@@ -48,6 +48,3 @@ class BackGround(Turtle):
         self.goto(40, 240)
         self.write(self.score_p2, True, "center", font=("Arial", 40, "normal"))
 
-    def the_end(self):
-        self.goto(0, 0)
-        self.write("GAME OVER !!", True, "center", font=("Arial", 40, "normal"))
