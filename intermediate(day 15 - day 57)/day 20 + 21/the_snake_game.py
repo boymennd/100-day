@@ -12,22 +12,19 @@ the_score = ScoreBoard()
 screen.listen()
 snake.control()
 snake.point()
-score = 0
-the_score.score_up(score)
+the_score.score_up()
 end = False
 while not end:
     screen.update()
     time.sleep(0.1)
     snake.move()
     if snake.check():
-        the_score.clear()
-        the_score.goto(0,255)
-        score += 1
-        the_score.score_up(score)
+        the_score.scores += 1
+        the_score.update_score()
     snake.colors()
     if snake.over_wall() or snake.die_your_self():
-        end = True
-        the_score.game_over(score)
+        snake.reset()
+        the_score.reset()
 
 
 

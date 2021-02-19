@@ -21,7 +21,7 @@ while not end:
         auto_car.x_move += 1
         auto_car.appen_car()
     for car in auto_car.car_list:
-        if turtle.distance(car) < 20:
+        if turtle.distance(car) < 17:
             end = True
             turtle.end_game()
 

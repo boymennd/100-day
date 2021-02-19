@@ -34,7 +34,7 @@ class AutoCar:
         self.x_move = 8
 
     def the_car(self):
-        for i in range(12):
+        for i in range(18):
             car = t.Turtle()
             t.colormode(255)
             car.penup()

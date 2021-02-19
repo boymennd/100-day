@@ -1,5 +1,5 @@
 from turtle import Turtle,Screen
-from random import randint
+from random import randint,choice
 screen = Screen()
 start_pos = [(0, 0), (-20, 0), (-40, 0)]
 up = 90
@@ -7,11 +7,14 @@ down = 270
 right = 0
 left = 180
 your_score = 0
+color = ["green","yellow","pink","blue","red","orange"]
+
 class Snake:
     def __init__(self):
         self.snakes = []
         self.add_snake()
         self.head = self.snakes[0]
+
     def add_snake(self):
         for pos in start_pos:
             turtle = Turtle()
@@ -20,12 +23,14 @@ class Snake:
             turtle.color("white")
             turtle.shape("square")
             self.snakes.append(turtle)
+
     def move(self):
         for i in range(len(self.snakes) - 1, 0, -1):
             x_cor = self.snakes[i-1].xcor()
             y_cor = self.snakes[i-1].ycor()
             self.snakes[i].goto(x_cor, y_cor)
         self.snakes[0].forward(20)
+
     def up(seft):
         if seft.head.heading() != down:
             seft.head.setheading(up)
@@ -69,18 +74,25 @@ class Snake:
             self.point.setx(randint(-280,280))
             self.point.sety(randint(-280,280))
             return True
+
     def colors(self):
         for snake in self.snakes[0:len(self.snakes):2]:
-            snake.color("green")
+            snake.color(choice(color))
+
     def over_wall(self):
         if self.snakes[0].xcor() >= 300 or self.snakes[0].ycor() >= 300:
-            print("Game over!!!")
             return True
         if self.snakes[0].xcor() <= -300 or self.snakes[0].ycor() <= -300:
-            print("Game over!!!")
             return True
+
     def die_your_self(self):
         for snake in self.snakes[1:]:
             if self.snakes[0].distance(snake) < 10:
-                print("Game over !!!")
                 return True
+
+    def reset(self):
+        for snake in self.snakes:
+            snake.goto(1000,1000)
+        self.snakes.clear()
+        self.add_snake()
+        self.head = self.snakes[0]
