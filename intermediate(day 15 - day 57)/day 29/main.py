@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 letters = [
     "a",
@@ -59,6 +60,7 @@ letters = [
 ]
 numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 symbols = ["!", "#", "$", "%", "&", "(", ")", "*", "+"]
+blue = "#155ee9"
 
 
 def get_pass():
@@ -73,6 +75,12 @@ def get_pass():
 
 
 def add():
+    new_data = {
+        website.get(): {
+            "email": user.get(),
+            "password": password.get(),
+        }
+    }
     if website.get() == "":
         messagebox.showerror("Error", "Please enter website!")
     elif user.get() == "":
@@ -87,16 +95,37 @@ def add():
             f"It is ok to save?",
         )
         if is_ok:
-            with open("data.txt", "a+") as file:
-                file.write(f"{website.get()} | {user.get()} | {password.get()}\n")
+            try:
+                with open("data.json", "r") as file:
+                    data = json.load(file)
+            except json.decoder.JSONDecodeError:
+                with open("data.json", "w") as file:
+                    json.dump(new_data, file, indent=4)
+            else:
+                data.update(new_data)
             website.delete(0, END)
             password.delete(0, END)
+
+
+def get_search():
+    with open("data.json", "r") as file:
+        data = json.load(file)
+    try:
+        data_file = data[website.get()]
+        messagebox.showinfo(
+            title=website.get(),
+            message=f"Email:{data_file['email']}\nPassword:{data_file['password']}",
+        )
+    except KeyError:
+        messagebox.showerror(
+            title="Error", message=f"These is no website called {website.get()}"
+        )
 
 
 window = Tk()
 
 window.title("Password Manager")
-window.config(padx=60, pady=100)
+window.config(padx=100, pady=100)
 image = PhotoImage(file="logo.png")
 canvas = Canvas(width=200, height=200, highlightthickness=0)
 canvas.create_image(100, 100, image=image)
@@ -107,17 +136,19 @@ lb1 = Label(text="Email/Username:", font=2)
 lb1.grid(column=1, row=3)
 lb2 = Label(text="Password:", font=2)
 lb2.grid(column=1, row=4)
-website = Entry(width=55)
-website.grid(column=2, row=2, columnspan=2)
+website = Entry(width=35)
+website.grid(column=2, row=2)
+search = Button(text="Search", width=15, command=get_search, activebackground=blue)
+search.grid(column=3, row=2)
 user = Entry(width=55)
 user.insert(END, string="congk59uet@gmail.com")
 user_get = user.get()
 user.grid(column=2, row=3, columnspan=2)
-password = Entry(width=34)
+password = Entry(width=35)
 password.grid(column=2, row=4)
-but = Button(text="Generate Password", command=get_pass)
+but = Button(text="Generate Password", command=get_pass, activebackground=blue)
 but.grid(column=3, row=4)
-but1 = Button(text="Add", width=46, command=add)
+but1 = Button(text="Add", width=46, command=add, activebackground=blue)
 but1.grid(column=2, row=5, columnspan=2)
 
 
