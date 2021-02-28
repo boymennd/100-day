@@ -34,13 +34,13 @@ else:
 if price_difference >= 5 or price_difference <= 5:
     response1 = requests.get("https://newsapi.org/v2/everything", params=parameters_new)
     data1 = response1.json()
-    data_new = data1["articles"][:3]
-    data_send = [f"Headline:{i['title']}\nBrief:{i['description']}" for i in data_new]
+    data_new = data1["articles"][:2]
+    data_send = "".join([f"{tlsa}\nHeadline:{i['title']}\nBrief:{i['description']}" for i in data_new])
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
         connection.login(user=my_gmail, password=password)
         connection.sendmail(
             from_addr=my_gmail,
             to_addrs=my_gmail,
-            msg=f"Subject:Stock volatility TSLA!\n\n{tlsa}\n{data_send}",
+            msg=f"Subject:Stock volatility TSLA!\n\n{data_send}",
         )
