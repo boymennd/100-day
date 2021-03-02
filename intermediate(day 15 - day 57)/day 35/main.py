@@ -1,16 +1,15 @@
-import html, requests, smtplib
+import requests, smtplib,os
 
 my_gmail = "iobi1907@gmail.com"
-password = "01214179548"
-my_city = html.escape("HàNội")
+password = os.environ.get("PASS_MAIL")
 MY_LAT = 21.027763
 MY_LONG = 105.834160
-my_API_key = "80a1c0d5fb803ab59c759ad4a63d8227"
+WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY")
 parameters = {
     "lat": MY_LAT,
     "lon": MY_LONG,
     "exclude": "current,minutely,daily,alerts",
-    "appid": my_API_key,
+    "appid": WEATHER_API_KEY,
 }
 response = requests.get(
     "https://api.openweathermap.org/data/2.5/onecall", params=parameters

@@ -1,4 +1,4 @@
-import requests, datetime
+import requests, datetime,os
 
 
 def date_now():
@@ -6,12 +6,12 @@ def date_now():
     return now.strftime("%Y%m%d")
 
 
-token = "skdjaskdjkm132223mlmd"
+token_pixela = os.environ.get("token_pixela")
 user_name = "boymennd"
 graphs_id = "graphsofiobi1"
 pixela_endpoint = "https://pixe.la/v1/users"
 user_parameters = {
-    "token": token,
+    "token": token_pixela,
     "username": user_name,
     "agreeTermsOfService": "yes",
     "notMinor": "yes",
@@ -27,7 +27,7 @@ graphs_parameters = {
     "color": "shibafu",
 }
 headers = {
-    "X-USER-TOKEN": token,
+    "X-USER-TOKEN": token_pixela,
 }
 # response = requests.post(url=graphs_endpoint, json=graphs_parameters, headers=headers)
 # print(response.text)

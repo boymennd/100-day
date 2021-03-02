@@ -1,11 +1,11 @@
-import requests, datetime
+import requests, datetime,os
 
 GENDER = "male"
 WEIGHT_KG = 84
 HEIGHT_CM = 184
 AGE = 25
-Application_ID = "696f7c33"
-Application_Keys = "d98c3d24c11d32f2ba60dbf05febe965"
+Application_ID = os.environ.get("Application_ID")
+Application_Keys = os.environ.get("Application_Keys")
 
 app_link = "https://trackapi.nutritionix.com/v2/natural/exercise"
 sheety_endpoint = (
@@ -15,8 +15,8 @@ headers = {
     "x-app-id": Application_ID,
     "x-app-key": Application_Keys,
 }
-USER = "boymennd"
-PASS = "congxp1996"
+USER_sheety = os.environ.get("USER_sheety")
+PASS_sheety = os.environ.get("PASS_sheety")
 exercise_text = input("Tell me which exercises you did: ")
 parameters = {
     "query": exercise_text,
@@ -43,5 +43,5 @@ for exercise in exercise_data:
         }
     }
 
-    response1 = requests.post(url=sheety_endpoint, json=workouts, auth=(USER, PASS))
+    response1 = requests.post(url=sheety_endpoint, json=workouts, auth=(USER_sheety, PASS_sheety))
     print(response1.text)

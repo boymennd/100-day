@@ -1,10 +1,10 @@
-import requests, smtplib
+import requests, smtplib,os
 from datetime import datetime
 
 my_gmail = "iobi1907@gmail.com"
-password = "01214179548"
-ALPHA_KEY = "RGEYNX4MX33JCE0Y"
-NEW_KEY = "360b646498af4bf9a092aed0574a9604"
+password = os.environ.get("PASS_MAIL")
+ALPHA_API_KEY = os.environ.get("ALPHA_API_KEY")
+NEW_API_KEY = os.environ.get("NEW_API_KEY")
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 parameters_alpha = {
@@ -12,11 +12,11 @@ parameters_alpha = {
     "symbol": STOCK,
     "interval": "60min",
     "outputsize": "full",
-    "apikey": ALPHA_KEY,
+    "apikey": ALPHA_API_KEY,
 }
 parameters_new = {
     "qInTitle": COMPANY_NAME,
-    "apiKey": NEW_KEY,
+    "apiKey": NEW_API_KEY,
 }
 day = datetime.now().day - 2
 response = requests.get("https://www.alphavantage.co/query", params=parameters_alpha)
