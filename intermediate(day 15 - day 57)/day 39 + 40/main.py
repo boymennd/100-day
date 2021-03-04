@@ -1,5 +1,5 @@
 import requests, os, datetime, smtplib
-
+from mail_customer import MailCus
 my_mail = "iiobi1907@gmail.com"
 pass_mail = os.environ.get("PASS_MAIL")
 flight_search_endpoints = "https://tequila-api.kiwi.com/v2/search"
@@ -9,6 +9,7 @@ sheety_flight_endpoint = (
 headers = {"apikey": os.environ.get("KEY_FLIGHT_SEARCH")}
 USER_sheety = os.environ.get("USER_sheety")
 PASS_sheety = os.environ.get("PASS_sheety")
+mail_customer = MailCus()
 now = datetime.datetime.now()
 tomorrow = now + datetime.timedelta(minutes=1440)
 date_to = now + datetime.timedelta(minutes=259200)
@@ -37,16 +38,17 @@ for city in data_city:
             url = f"{sheety_flight_endpoint}/{city['id']}"
             param_put = {"price": {"lowestPrice": data_flight["price"]}}
             requests.put(url=url, json=param_put, auth=(USER_sheety, PASS_sheety))
-            with smtplib.SMTP("smtp.gmail.com") as connection:
-                connection.login(user=my_mail, password=pass_mail)
-                connection.starttls()
-                connection.sendmail(
-                    from_addr=my_mail,
-                    to_addrs=my_mail,
-                    msg=f'Subject:Low price alert!\n\nOnly {data_flight["price"]} vnd to fly from {data_flight["cityFrom"]}-{data_flight["flyFrom"]} to {data_flight["cityTo"]}-{data_flight["flyTo"]},from {date}',
-                )
+            for mail_cus in mail_customer.mail_list:
+                with smtplib.SMTP("smtp.gmail.com") as connection:
+                    connection.login(user=my_mail, password=pass_mail)
+                    connection.starttls()
+                    connection.sendmail(
+                        from_addr=my_mail,
+                        to_addrs=mail_cus,
+                        msg=f'Subject:Low price alert!\n\nOnly {data_flight["price"]} vnd to fly from {data_flight["cityFrom"]}-{data_flight["flyFrom"]} to {data_flight["cityTo"]}-{data_flight["flyTo"]},from {date}',
+                    )
     except:
-        print(f"Không có chuyến bay nào đến {city['city']}")
+        pass
 
 
 # query_endpoint = "https://tequila-api.kiwi.com/locations/query"
