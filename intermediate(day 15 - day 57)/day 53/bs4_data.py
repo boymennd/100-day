@@ -22,8 +22,12 @@ class DataInZillow:
         price = self.data.find_all(name="div", class_="list-card-price")
         address = self.data.find_all(name="address", class_="list-card-addr")
         for i in range(len(link)):
+            if link[i]['href'][0] == '/':
+                href = "https://www.zillow.com" + link[i]['href']
+            else:
+                href = link[i]['href']
             self.dict_zillow[i] = {
                 "address": address[i].text,
                 "price": price[i].text,
-                "link": link[i]["href"],
+                "link": href,
             }
