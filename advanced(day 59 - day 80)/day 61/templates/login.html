@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %} login {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Login</h1>
+    <div> {{ wtf.quick_form(form) }} </div>
+    <!--			<form action="{{ url_for('login') }}" method="post" >-->
+    <!--				<div> {{ form.name.label }}<br>-->
+    <!--					{{ form.name(size=30)}}-->
+    <!--					{% if form.name.errors: %}-->
+    <!--					{% for err in form.name.errors: %}-->
+    <!--					<ul style="color:red;"><li>{{ err }}</li></ul>-->
+    <!--					{% endfor %}-->
+    <!--					{% endif %}-->
+    <!--				</div>-->
+    <!--				<div> {{ form.password.label }}<br>-->
+    <!--					{{ form.password(size=30)}}-->
+    <!--					{% if form.password.errors: %}-->
+    <!--					{% for err in form.password.errors: %}-->
+    <!--					<ul style="color:red;"><li>{{ err }}</li></ul>-->
+    <!--					{% endfor %}-->
+    <!--					{% endif %}-->
+    <!--				</div>-->
+    <!--				<div> {{ form.email.label }}<br>-->
+    <!--					{{ form.email(size=30) }}-->
+    <!--					{% if form.email.errors: %}-->
+    <!--					{% for err in form.email.errors: %}-->
+    <!--					<ul style="color:red;"><li>{{ err }}</li></ul>-->
+    <!--					{% endfor %}-->
+    <!--					{% endif %}-->
+    <!--				</div>-->
+    <!--					<div>{{ form.submit() }}</div>-->
+    <!--			</form>-->
+</div>
+{% endblock %}
