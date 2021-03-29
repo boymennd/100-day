@@ -45,7 +45,7 @@ def home():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = MyForm()
-    if form.is_submitted():
+    if form.validate_on_submit():
         if form.name.data == USER_NAME and form.password.data == PASSWORD:
             return render_template("success.html")
         else:
