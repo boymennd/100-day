@@ -1,0 +1,12 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Add Book {% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>Book Name: {{ name }}</h2>
+        <h2>Current Rating: {{ rating }}</h2>
+        <form action="" method="post">
+            <input name="rate" type="text">
+            <input type="submit" value="Change Rating">
+        </form>
+    </div>
+{% endblock %}
