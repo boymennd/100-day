@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Morse Code</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/styles.css">
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section  id="title">
+        <div class="container-fluid ">
+            <h1>Welcome to Morse Code Translator</h1>
+            <a href="{{ url_for('encode') }}" class="btn btn-primary btn-lg but">Encode</a>
+            <a href="{{ url_for('decode') }}" class="btn btn-primary btn-lg but">Decode</a>
+        </div>
+    </section>
+    <section id="body-home">
+        <div class="container-fluid ">
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col col-lg-6">
+                        <label class="label-text">Input</label><br>
+                        <textarea cols="60" name="text" class="input-text" >{{ text_start }}</textarea>
+                    </div>
+                    <div class="col col-lg-6">
+                        <label class="label-text">Output</label>
+                        <div class="output"><p>{{ text }}</p></div>
+                    </div>
+                </div>
+                <input type="submit" value="Translate" class="btn btn-primary submit">
+            </form>
+        </div>
+        <footer class="white-section" id="footer">
+    <div class="container-fluid">
+      <i class="social-icon fab fa-facebook-f"></i>
+      <i class="social-icon fab fa-twitter"></i>
+      <i class="social-icon fab fa-instagram"></i>
+      <i class="social-icon fas fa-envelope"></i>
+    </div>
+    <a class="link" href="https://vi.wikipedia.org/wiki/M%C3%A3_Morse">Documents on Morse code </a>
+  </footer>
+    </section>
+</body>
+</html>

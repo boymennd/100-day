@@ -1,0 +1,49 @@
+body{
+    text-align: center;
+    color: #fff;
+}
+#title{
+    padding-top: 3%;
+    background-color: #212838;
+    font-family: "Montserrat-Black";
+    font-size: 6.5rem;
+    line-height: 1.5;
+}
+#body-home{
+    background-color: #6f6f6f;
+    padding: 4% 2%;
+}
+.but{
+    margin: 2% 1%;
+    margin-bot:14%;
+    background-color: #1CB070;
+}
+.label-text{
+    font-family: 'Ubuntu';
+    font-size: 120%;
+    color: #33CC54;
+}
+.input-text{
+    height: 250px;
+    width: 441px;
+}
+.output{
+    background-color:#fff;
+    height: 250px;
+    width: 441px;
+    margin:auto;
+    color:#000000;
+    text-align:left;
+}
+.submit{
+    margin: 3%;
+    font-size: 130%;
+    background-color: #1CB070;
+}
+.social-icon {
+  margin: 30px 10px 10px 10px;
+}
+.link{
+    color: #fff;
+    font-size:120%;
+}
