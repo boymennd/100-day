@@ -181,7 +181,7 @@ def show_post(post_id):
 
 @app.route("/about")
 def about():
-    return render_template("about.html", logged_in=current_user.is_authenticated)
+    return render_template("project.html", logged_in=current_user.is_authenticated)
 
 
 @app.route("/contact")
