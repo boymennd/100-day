@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		{% load static %}
+		{% load static %}
+		<title>
+		{% block title %}
+		{% endblock %}
+		</title>
+		<link rel="stylesheet" href="{% static 'fisrt_app/style.css' %}" />
+	</head>
+	<body class="is-preload">
+	  <div class="menu">
+		<ul>
+			<li><a href="{% url 'home:home' %}">home</a></li>
+			<li><a href="{% url 'blog:post' %}">blog</a></li>
+			<li><a href="{% url 'contact:contact' %}">contact</a></li>
+		</ul>
+	  </div>
+	  <div class="content">
+		{% block content %}
+		{% endblock %}
+	  </div>
+
+	</body>
+
+</html>
